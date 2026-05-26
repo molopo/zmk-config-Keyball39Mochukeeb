@@ -32,7 +32,7 @@
     processors {
         zip_temp_layer: zip_temp_layer {
             compatible = "zmk,input-processor-temp-layer";
-            #input-processor-cells = <4>;
+            #input-processor-cells = <2>; /* Fixed: altered from 4 to 2 */
             require-prior-idle-ms = <1000>; 
         };
 
@@ -45,8 +45,7 @@
     behaviors {
         scroll_mode: scroll_mode {
             compatible = "zmk,behavior-input-processor-key";
-            #binding-cells = <4>;
-            /* Linked to the zip_scroll processor defined in Step 1 */
+            #binding-cells = <2>; /* Fixed: altered from 4 to 2 */
             input-processor = <&zip_scroll>; 
         };
 
@@ -55,7 +54,6 @@
             label = "COMMA_QUESTION";
             #binding-cells = <0>;
             bindings = <&kp COMMA>, <&kp QUESTION>;
-
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -70,7 +68,6 @@
 
     combos {
         compatible = "zmk,combos";
-
         pipe {
             bindings = <&altsae>;
             key-positions = <14 15>;
@@ -150,7 +147,7 @@
             label = "MOUSE";
             bindings = <
 &kp N1          &kp N2          &kp N3        &kp N4     &kp N5                  &kp N6         &kp N7     &kp N8  &kp N9     &kp N0
-&kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT  &none                   &kp PAGE_UP    &mkp LCLK  &scroll_mode LM_TOGGLE 4   &mkp RCLK  &mkp MCLK
+&kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT  &none                   &kp PAGE_UP    &mkp LCLK  &scroll_mode LM_TOGGLE SCROLL   &mkp RCLK  &mkp MCLK
 &none           &none           &none         &none      &none                   &kp PAGE_DOWN  &none      &none   &none      &none
 &none           &trans          &trans        &trans     &trans  &trans  &trans  &mo 3                                        &none
             >;
@@ -178,6 +175,7 @@
     };
 };
 
+/* Hardware tracking overlay rules */
 &trackball {
-    input-processors = <&zip_temp_layer 4 1000>;
+    input-processors = <&zip_temp_layer MOUSE 1000>;
 };
