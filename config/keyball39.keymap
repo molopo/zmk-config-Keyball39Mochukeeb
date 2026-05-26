@@ -161,10 +161,12 @@
     require-prior-idle-ms = <1000>;
 };
 
-/* Attach the scrolling rule to the shield's virtual input-listener instead of the trackball driver */
+/* NEW: Guard with conditional block to prevent left-side build failures */
+#if defined(KEYBALL_RIGHT) || defined(SHIELD_KEYBALL39_RIGHT) || !defined(SHIELD_KEYBALL39_LEFT)
 &trackball_listener {
     scroll {
         layers = <SCROLL>;
         input-processors = <&zip_xy_to_scroll_mapper>;
     };
 };
+#endif
