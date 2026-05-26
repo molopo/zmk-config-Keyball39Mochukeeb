@@ -29,6 +29,17 @@
 &caps_word { continue-list = <UNDERSCORE MINUS>; };
 
 / {
+    /* 1. We create our own custom scroll processor natively inside the root node */
+    trackball_scroll {
+        compatible = "zmk,input-listener";
+        device = <&trackball>;
+        
+        scroll {
+            layers = <SCROLL>;
+            input-processors = <&zip_xy_to_scroll_mapper>;
+        };
+    };
+
     behaviors {
         cmqus: comma_question {
             compatible = "zmk,behavior-mod-morph";
@@ -160,13 +171,3 @@
 &zip_temp_layer {
     require-prior-idle-ms = <1000>;
 };
-
-/* NEW: Guard with conditional block to prevent left-side build failures */
-#if defined(KEYBALL_RIGHT) || defined(SHIELD_KEYBALL39_RIGHT) || !defined(SHIELD_KEYBALL39_LEFT)
-&trackball_listener {
-    scroll {
-        layers = <SCROLL>;
-        input-processors = <&zip_xy_to_scroll_mapper>;
-    };
-};
-#endif
