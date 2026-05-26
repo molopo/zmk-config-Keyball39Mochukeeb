@@ -29,8 +29,6 @@
 &caps_word { continue-list = <UNDERSCORE MINUS>; };
 
 / {
-    /* REMOVED: The processors block is deleted to fix the duplicate label crash */
-
     behaviors {
         cmqus: comma_question {
             compatible = "zmk,behavior-mod-morph";
@@ -158,15 +156,13 @@
     };
 };
 
-/* Overriding the underlying shield's layer-switch timing to 1000ms */
+/* Safely override the shield's auto-mouse layer switch delay to 1000ms */
 &zip_temp_layer {
     require-prior-idle-ms = <1000>;
 };
 
-/* Point the hardware pointer to our setup */
-&trackball {
-    input-processors = <&zip_temp_layer MOUSE 1000>;
-
+/* Attach the scrolling rule to the shield's virtual input-listener instead of the trackball driver */
+&trackball_listener {
     scroll {
         layers = <SCROLL>;
         input-processors = <&zip_xy_to_scroll_mapper>;
