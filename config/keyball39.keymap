@@ -29,7 +29,8 @@
 &caps_word { continue-list = <UNDERSCORE MINUS>; };
 
 / {
-    /* 1. We create our own custom scroll processor natively inside the root node */
+    /* Guarded: Only include trackball scrolling listener on the right hardware side */
+    #ifdef KEYBALL_RIGHT
     trackball_scroll {
         compatible = "zmk,input-listener";
         device = <&trackball>;
@@ -39,6 +40,7 @@
             input-processors = <&zip_xy_to_scroll_mapper>;
         };
     };
+    #endif
 
     behaviors {
         cmqus: comma_question {
