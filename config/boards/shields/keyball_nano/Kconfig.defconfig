@@ -9,6 +9,11 @@ if SHIELD_KEYBALL39_LEFT || SHIELD_KEYBALL39_RIGHT
 
 config ZMK_SPLIT
 	default y
+
+config PMW3610
+    default n
+config ZMK_POINTING
+    default n
 	
 endif
 
@@ -30,6 +35,11 @@ if SHIELD_KEYBALL39_DONGLE
 
 config ZMK_SPLIT_BLE_ROLE_CENTRAL
 	default y
+
+config PMW3610
+    default y
+config ZMK_POINTING
+    default y
 
 endif
 
