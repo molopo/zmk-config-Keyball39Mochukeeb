@@ -31,6 +31,8 @@ if SHIELD_KEYBALL39_DONGLE
 config ZMK_SPLIT_BLE_ROLE_CENTRAL
 	default y
 
+endif
+
 if LVGL
 
 config LV_Z_VDB_SIZE
