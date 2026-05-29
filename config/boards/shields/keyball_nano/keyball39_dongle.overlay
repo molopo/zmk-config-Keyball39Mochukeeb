@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: MIT
  */
 #include <dt-bindings/zmk/matrix_transform.h>
+#include "trackball_split.dtsi"
 
 / {
     chosen {
@@ -48,4 +49,9 @@
         inversion-on;
         prechargep = <0x22>;
         };
-}; 
+};
+
+/* Central consumes the trackball input forwarded by the right peripheral. */
+&trackball_listener {
+    status = "okay";
+};

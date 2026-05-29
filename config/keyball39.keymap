@@ -29,19 +29,6 @@
 &caps_word { continue-list = <UNDERSCORE MINUS>; };
 
 / {
-    /* Guarded: Only include trackball scrolling listener on the right hardware side */
-    #ifdef KEYBALL_RIGHT
-    trackball_scroll {
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
-        
-        scroll {
-            layers = <SCROLL>;
-            input-processors = <&zip_xy_to_scroll_mapper>;
-        };
-    };
-    #endif
-
     behaviors {
         cmqus: comma_question {
             compatible = "zmk,behavior-mod-morph";

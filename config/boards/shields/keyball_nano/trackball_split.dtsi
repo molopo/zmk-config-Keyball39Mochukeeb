@@ -1,0 +1,49 @@
+/*
+ * Shared trackball split-input wiring for dongle mode.
+ *
+ * The PMW3610 trackball is physically on the right half, which runs as a
+ * split *peripheral*. Its raw movement is forwarded over the split link via
+ * zmk,input-split and processed by an input-listener on the *central*
+ * (the dongle), where layer state lives.
+ *
+ * Included by both keyball39_right.overlay and keyball39_dongle.overlay:
+ *   - right sets `&trackball_split { device = <&trackball>; }` to forward.
+ *   - dongle sets `&trackball_listener { status = "okay"; }` to consume.
+ */
+
+#include <input/processors.dtsi>
+
+/ {
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        trackball_split: trackball_split@0 {
+            compatible = "zmk,input-split";
+            reg = <0>;
+        };
+    };
+
+    /*
+     * Disabled by default; enabled on the central (dongle) only.
+     * Layer indices match the keymap: 4 = MOUSE, 5 = SCROLL, 6 = SNIPE.
+     */
+    trackball_listener: trackball_listener {
+        compatible = "zmk,input-listener";
+        status = "disabled";
+        device = <&trackball_split>;
+
+        /* Automouse: any movement temporarily activates the MOUSE layer. */
+        input-processors = <&zip_temp_layer 4 1000>;
+
+        scroller {
+            layers = <5>;
+            input-processors = <&zip_xy_to_scroll_mapper>;
+        };
+
+        snipe {
+            layers = <6>;
+            input-processors = <&zip_xy_scaler 1 2>;
+        };
+    };
+};
