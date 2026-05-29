@@ -33,7 +33,10 @@ endif
 
 if SHIELD_KEYBALL39_DONGLE
 
-config ZMK_SPLIT_BLE_ROLE_CENTRAL
+config ZMK_SPLIT
+	default y
+
+config ZMK_SPLIT_ROLE_CENTRAL
 	default y
 
 config PMW3610
