@@ -97,7 +97,7 @@
         number_layer {
             label = "NUM";
             bindings = <
-&kp NUMBER_1  &kp F7        &kp UP        &kp EQUAL     &kp COLON                     &kp PLUS         &kp NUMBER_7   &kp NUMBER_8  &kp NUMBER_9  &kp NUMBER_0
+&kp NUMBER_1  &kp F7        &kp UP        &kp EQUAL     &kp COLON                     &kp PLUS         &kp NUMBER_7   &kp NUMBER_8  &kp NUMBER_9  &kp APOSTROPHE
 &kp LEFT_PARENTHESIS  &kp LEFT      &kp DOWN      &kp RIGHT     &kp RIGHT_PARENTHESIS &kp MINUS        &kp NUMBER_4   &kp NUMBER_5  &kp NUMBER_6  &kp PERIOD
 &none         &kp F1        &kp F2        &kp F3        &none                         &kp NUMBER_0     &kp NUMBER_1   &kp NUMBER_2  &kp NUMBER_3  &kp SLASH
 &kp LSHFT     &trans        &trans        &trans        &trans   &mmattest            &mmattest        &trans                                                  &kp RSHFT
