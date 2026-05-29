@@ -12,5 +12,5 @@ include:
     shield: settings_reset
     cmake-args: -DCONFIG_ZMK_STUDIO=n
   - board: seeeduino_xiao_ble
-    shield: keyball39_dongle
+    shield: keyball39_dongle dongle_display
     cmake-args: -DCONFIG_ZMK_STUDIO=n
